@@ -4,8 +4,8 @@ import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
 import { Container } from 'components/common/Container';
-import { Title } from 'components/common/CommonStyled';
-import initialContacts from 'components/data/contacts.json';
+import { Title } from 'components/common/TitleStyled';
+import initialContacts from 'data/contacts.json';
 
 export class App extends Component {
   state = {

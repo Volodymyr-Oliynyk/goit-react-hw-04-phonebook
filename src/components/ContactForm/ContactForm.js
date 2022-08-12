@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import propTypes from 'prop-types';
-import { Button } from 'components/common/CommonStyled';
+import { Button } from 'components/common/ButtonStyled';
 import {
   ContactFormStyled,
   ContactLabel,
