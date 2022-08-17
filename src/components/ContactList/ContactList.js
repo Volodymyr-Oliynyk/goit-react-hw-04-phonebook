@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import { Button } from 'components/common/ButtonStyled';
 import { ContactItem, List } from './ContactListstyled';
 
@@ -18,13 +18,13 @@ const ContactList = ({ contacts, onDeleteContact }) => {
 
 export default ContactList;
 
-ContactList.propTypes = {
-  contacts: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.string.isRequired,
-      name: propTypes.string.isRequired,
-      number: propTypes.string.isRequired,
-    })
-  ).isRequired,
-  onDeleteContact: propTypes.func.isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: propTypes.arrayOf(
+//     propTypes.shape({
+//       id: propTypes.string.isRequired,
+//       name: propTypes.string.isRequired,
+//       number: propTypes.string.isRequired,
+//     })
+//   ).isRequired,
+//   onDeleteContact: propTypes.func.isRequired,
+// };

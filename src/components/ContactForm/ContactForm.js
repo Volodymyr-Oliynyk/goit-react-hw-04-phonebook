@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import propTypes from 'prop-types';
@@ -9,6 +9,10 @@ import {
   ContactField,
 } from './ContactFormStyled';
 
+const initialValues = {
+  name: '',
+    number: '',
+}
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -26,25 +30,21 @@ const schema = yup.object().shape({
     ),
 });
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+export default function ContactForm () {
+  
 
-  handleSubmit = (values, { resetForm }) => {
-    console.log('values :>> ', values);
-    const { name, number } = values;
+  const handleSubmit = (values, { resetForm }) => {
+      const { name, number } = values;
     this.props.onSubmit(name, number);
     resetForm();
   };
 
-  render() {
+ 
     return (
       <Formik
-        initialValues={this.state}
+        initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={this.handleSubmit}
+        onSubmit={handleSubmit}
       >
         <ContactFormStyled>
           <ContactLabel htmlFor="name">
@@ -63,9 +63,9 @@ class ContactForm extends Component {
       </Formik>
     );
   }
-}
 
-export default ContactForm;
+
+
 
 ContactForm.propTypes = {
   initialValues: propTypes.object,
