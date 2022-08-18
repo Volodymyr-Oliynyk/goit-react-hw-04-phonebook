@@ -9,10 +9,6 @@ import {
   ContactField,
 } from './ContactFormStyled';
 
-const initialValues = {
-  name: '',
-  number: '',
-};
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -30,7 +26,9 @@ const schema = yup.object().shape({
     ),
 });
 
-export default function ContactForm({onSubmit}) {
+export default function ContactForm({ onSubmit }) {
+
+
   const handleSubmit = (values, { resetForm }) => {
     const { name, number } = values;
     onSubmit(name, number);
@@ -39,7 +37,10 @@ export default function ContactForm({onSubmit}) {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        name: '',
+        number: '',
+      }}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >

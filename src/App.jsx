@@ -8,8 +8,10 @@ import { Title } from 'components/common/TitleStyled';
 import initialContacts from './data/data.json';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
+const LOCAL_KEY = 'contacts';
+
 export default function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts', initialContacts);
+  const [contacts, setContacts] = useLocalStorage(LOCAL_KEY, initialContacts);
 
   const [filter, setFilter] = useState('');
 
@@ -22,7 +24,7 @@ export default function App() {
     setContacts(contacts =>
       contacts.find(contact => contact.name === newContact.name)
         ? alert(`${newContact.name} is already in contacts`)
-        : { contacts: [...contacts, newContact] }
+        : [...contacts, newContact]
     );
   };
 
@@ -50,10 +52,7 @@ export default function App() {
 
       <Title>Contacts</Title>
       <Filter value={filter} onChange={changeFilter} />
-      <ContactList
-        contacts={visibleContacts}
-        onDeleteContact={deleteContact}
-      />
+      <ContactList contacts={visibleContacts} onDeleteContact={deleteContact} />
     </Container>
   );
 }

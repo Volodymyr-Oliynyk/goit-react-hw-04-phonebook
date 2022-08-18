@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Input } from 'components/common/InputStyled';
-import { FilterLabel } from './LabelStyles';
+import { FilterLabel } from './FilterStyled';
 
 const Filter = ({ value, onChange }) => {
   return (
