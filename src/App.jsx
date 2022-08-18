@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
@@ -7,7 +7,6 @@ import { Container } from 'components/common/Container';
 import { Title } from 'components/common/TitleStyled';
 import initialContacts from './data/data.json';
 import { useLocalStorage } from './hooks/useLocalStorage';
-// const KEY = 'contacts';
 
 export default function App() {
   const [contacts, setContacts] = useLocalStorage('contacts', initialContacts);
@@ -37,12 +36,12 @@ export default function App() {
     setFilter(e.target.value);
   };
 
-  const visibleContacts = () => {
+  const visibleContacts = useMemo(() => {
     const normalizedContacts = filter.toLowerCase();
-    return contacts.filter(({name}) =>
+    return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedContacts)
     );
-  };
+  }, [contacts, filter]);
 
   return (
     <Container>
@@ -52,7 +51,7 @@ export default function App() {
       <Title>Contacts</Title>
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
-        contacts={visibleContacts()}
+        contacts={visibleContacts}
         onDeleteContact={deleteContact}
       />
     </Container>

@@ -11,8 +11,8 @@ import {
 
 const initialValues = {
   name: '',
-    number: '',
-}
+  number: '',
+};
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -30,42 +30,36 @@ const schema = yup.object().shape({
     ),
 });
 
-export default function ContactForm () {
-  
-
+export default function ContactForm({onSubmit}) {
   const handleSubmit = (values, { resetForm }) => {
-      const { name, number } = values;
-    this.props.onSubmit(name, number);
+    const { name, number } = values;
+    onSubmit(name, number);
     resetForm();
   };
 
- 
-    return (
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        <ContactFormStyled>
-          <ContactLabel htmlFor="name">
-            Name
-            <ContactField type="text" name="name" />
-            <ErrorMessage name="name" />
-          </ContactLabel>
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      <ContactFormStyled>
+        <ContactLabel htmlFor="name">
+          Name
+          <ContactField type="text" name="name" />
+          <ErrorMessage name="name" />
+        </ContactLabel>
 
-          <ContactLabel htmlFor="number">
-            Number
-            <ContactField type="tel" name="number" />
-            <ErrorMessage name="number" />
-          </ContactLabel>
-          <Button type="submit">Add contact</Button>
-        </ContactFormStyled>
-      </Formik>
-    );
-  }
-
-
-
+        <ContactLabel htmlFor="number">
+          Number
+          <ContactField type="tel" name="number" />
+          <ErrorMessage name="number" />
+        </ContactLabel>
+        <Button type="submit">Add contact</Button>
+      </ContactFormStyled>
+    </Formik>
+  );
+}
 
 ContactForm.propTypes = {
   initialValues: propTypes.object,
